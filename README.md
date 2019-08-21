@@ -1,4 +1,4 @@
-# [Mobeye](https://www.mobeye-app.com) preliminiary test
+# [Mobeye](https://www.mobeye-app.com) preliminary test
 
 ## Guidelines
 
