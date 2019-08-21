@@ -12,9 +12,25 @@ def is_anagram(s1, s2):
     pass
 
 
-def check_bracket_consistency(string):
+def check_parenthesis_consistency_only(string):
     """
-    Write an algorithm that determines if the brackets in a string are properly balanced.
+    Write an algorithm that determines if the parentheses (round brackets "()") in a string are properly balanced.
+    An expression is said to be properly parenthesised if it has the form "(p)" or "pq", where p and q are
+    properly parenthesised expressions. Any string (including an empty string) that does not contain any parenthesis
+    is properly parenthesised.
+    E.g.: "()()" is properly parenthesised, "(()" is not.
+    :param string: the string to analyse.
+    :return: True if the parentheses are balanced, False if not.
+    """
+    # Write your code here
+    pass
+
+
+def check_any_bracket_consistency(string):
+    """
+    Write an algorithm that determines if the round brackets "()", square brackets "[]" and curly braces "{}" in a
+    string are properly balanced.
+    E.g.: "(){}" is OK, "({)}" is not.
     :param string: the string to analyse.
     :return: True if the brackets are balanced, False if not.
     """

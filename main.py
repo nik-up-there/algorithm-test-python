@@ -38,12 +38,23 @@ if __name__ == "__main__":
             expected_output=out
         ))
 
+    for inp, out in (("()", True), ("(())", True), ("()()", True), ("(()", False), ("())", False),
+                     ("(((()", False), ("())))", False)):
+        suite.addTest(AlgorithmTest(
+            "test_algorithm_input_output",
+            algorithm_name="check_parenthesis_consistency_only",
+            input_args={
+                "string": inp
+            },
+            expected_output=out
+        ))
+
     for inp, out in (("()", True), ("({})", True), ("({}[])", True), ("(){}[]", True), ("(({[{}]}))", True),
                      ("({)}", False), ("(()", False), ("())", False), ("(((()", False), ("())))", False),
                      ("int main() { for (int i = 0; i < 42; i++) { if (i == 26) { printf(\"coucou\"); } } }", True)):
         suite.addTest(AlgorithmTest(
             "test_algorithm_input_output",
-            algorithm_name="check_bracket_consistency",
+            algorithm_name="check_any_bracket_consistency",
             input_args={
                 "string": inp
             },
