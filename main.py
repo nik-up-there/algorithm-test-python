@@ -1,6 +1,7 @@
 from typing import Any
 import unittest
 import exercises
+from mazes import mazes
 
 
 class AlgorithmTest(unittest.TestCase):
@@ -42,22 +43,18 @@ if __name__ == "__main__":
                      ("(((()", False), ("())))", False)):
         suite.addTest(AlgorithmTest(
             "test_algorithm_input_output",
-            algorithm_name="check_parenthesis_consistency_only",
+            algorithm_name="check_parenthesis_consistency",
             input_args={
                 "string": inp
             },
             expected_output=out
         ))
 
-    for inp, out in (("()", True), ("({})", True), ("({}[])", True), ("(){}[]", True), ("(({[{}]}))", True),
-                     ("({)}", False), ("(()", False), ("())", False), ("(((()", False), ("())))", False),
-                     ("int main() { for (int i = 0; i < 42; i++) { if (i == 26) { printf(\"coucou\"); } } }", True)):
+    for inp, out in mazes:
         suite.addTest(AlgorithmTest(
             "test_algorithm_input_output",
-            algorithm_name="check_any_bracket_consistency",
-            input_args={
-                "string": inp
-            },
+            algorithm_name="shortest_path",
+            input_args=inp,
             expected_output=out
         ))
 
