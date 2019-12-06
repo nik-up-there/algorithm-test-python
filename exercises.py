@@ -21,6 +21,19 @@ def is_anagram(s1, s2):
     return True
 
 
+def preprocess_string(string):
+    """
+    A function that preprocess the input string to remove all character that are not "(" or ")"
+    :param string: the string to preprocess
+    :return: string: the preprocessed string
+    """
+    new_string = ""
+    for x in string:
+        if x == "(" or x == ")":
+            new_string += x
+    return new_string
+
+
 def check_parenthesis_consistency(string):
     """
     Write an algorithm that determines if the parenthesis (round brackets "()") in a string are properly balanced.
@@ -31,9 +44,17 @@ def check_parenthesis_consistency(string):
     :param string: the string to analyse.
     :return: True if the parentheses are balanced, False if not.
     """
-
-    # Write your code here
-    pass
+    string = preprocess_string(string)
+    stack = []
+    for x in string:
+        if x == "(":
+            stack.append(x)
+        elif x == ")":
+            if stack and stack[-1] == "(":
+                stack.pop()
+            else:
+                return False
+    return not stack
 
 
 def shortest_path(start, end, maze):
