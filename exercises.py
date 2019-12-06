@@ -8,9 +8,17 @@ def is_anagram(s1, s2):
     :param s2: string
     :return: True or False
     """
+    if len(s1) != len(s2):
+        return False
 
-    # Write your code here
-    pass
+    for letter in s1:
+        index_in_s2 = s2.find(letter)
+        if index_in_s2 == -1:
+            return False
+        else:
+            s2 = s2.replace(letter, '', 1)
+
+    return True
 
 
 def check_parenthesis_consistency(string):
