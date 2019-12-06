@@ -24,6 +24,7 @@ def is_anagram(s1, s2):
 def preprocess_string(string):
     """
     A function that preprocess the input string to remove all character that are not "(" or ")"
+    Not usefull here as every tested string are only made with "(" and ")" but we never know ;-)
     :param string: the string to preprocess
     :return: string: the preprocessed string
     """
