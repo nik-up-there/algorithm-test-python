@@ -10,7 +10,7 @@
 ## Requirements
 
 - Python 3.6
-- No dependencies needed
+- networkx
 
 ## Exercises
 
