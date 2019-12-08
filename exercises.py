@@ -1,7 +1,8 @@
 ########################################################################################################################
 #                                                      IMPORTS
 ########################################################################################################################
-import networkx as nx
+from graph import Graph
+# import networkx as nx
 
 
 ########################################################################################################################
@@ -29,8 +30,7 @@ def is_anagram(s1, s2):
         index_in_s2 = s2.find(letter)
         if index_in_s2 == -1:
             return False
-        else:
-            s2 = s2.replace(letter, '', 1)
+        s2 = s2.replace(letter, '', 1)
 
     return True
 
@@ -91,26 +91,63 @@ def shortest_path(start, end, maze):
     """
     # Transform the given maze into a graph object
     # Create graph object
-    maze_graph = nx.MultiDiGraph()
+    maze_graph = Graph()
     # Add nodes to the graph
     for i in range(len(maze)):
         for j in range(len(maze[i])):
             if maze[i][j] == 1:
                 maze_graph.add_node((i, j))
     # Add edges to the graph
-    for node in maze_graph.nodes():
+    for node in maze_graph.nodes:
         i, j = node
         for move in MOVES:
             new_node = (i + move[1], j + move[2])
-            if new_node in maze_graph.nodes():
+            if new_node in maze_graph.nodes:
                 maze_graph.add_edge(node, new_node)
-    # Find the shortest path using Dijkstra algorithm
+    # Finding the shortest path using Dijkstra algorithm
     try:
-        path = nx.shortest_path(maze_graph, source=start, target=end, method='dijkstra')
-        return path
-    except nx.exception.NodeNotFound:
+        return maze_graph.dijkstra(start, end)
+    except ValueError:
         # Either source or target not in graph nodes
         return False
-    except nx.exception.NetworkXNoPath:
+    except KeyError:
         # No path from source to target
         return False
+
+
+# def shortest_path_with_library(start, end, maze):
+#     """
+#     Write an algorithm that finds the shortest path in a maze from start to end
+#     The maze is represented by a list of lists containing 0s and 1s:
+#     0s are walls, paths cannot go through them
+#     The only movements allowed are UP/DOWN/LEFT/RIGHT
+#     :param start: tuple (x_start, y_start) - the starting point
+#     :param end: tuple (x_end, y_end) - the ending point
+#     :param maze: list of lists - the maze
+#     :return: list of positions [(x1, y1), (x2, y2), ...] representing the shortest path in the maze
+#     """
+#     # Transform the given maze into a graph object
+#     # Create graph object
+#     maze_graph = nx.MultiDiGraph()
+#     # Add nodes to the graph
+#     for i in range(len(maze)):
+#         for j in range(len(maze[i])):
+#             if maze[i][j] == 1:
+#                 maze_graph.add_node((i, j))
+#     # Add edges to the graph
+#     for node in maze_graph.nodes():
+#         i, j = node
+#         for move in MOVES:
+#             new_node = (i + move[1], j + move[2])
+#             if new_node in maze_graph.nodes():
+#                 maze_graph.add_edge(node, new_node)
+#     # Find the shortest path using Dijkstra algorithm
+#     try:
+#         path = nx.shortest_path(maze_graph, source=start, target=end, method='dijkstra')
+#         return path
+#     except nx.exception.NodeNotFound:
+#         # Either source or target not in graph nodes
+#         return False
+#     except nx.exception.NetworkXNoPath:
+#         # No path from source to target
+#         return False
